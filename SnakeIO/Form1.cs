@@ -238,7 +238,6 @@ namespace SnakeIO
 
 
         }
-
         private void generateFood()
         {
             //YEMEK OLUŞTURMA FONK.
@@ -257,7 +256,6 @@ namespace SnakeIO
 
 
         }
-
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (Input.pressedKeys.Contains(Keys.Return))
