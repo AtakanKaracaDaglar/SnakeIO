@@ -30,18 +30,15 @@ namespace SnakeIO
 
             this.KeyDown += (s, e) => Input.KeyDown(e.KeyCode);
             this.KeyUp += (s, e) => Input.KeyUp(e.KeyCode);
-    
 
 
-
-            //gameTimer.Interval = 1000 / Settings.Speed;
-            gameTimer.Interval = 100;
+           
+            gameTimer.Interval = 2000 / Settings.Speed;
             gameTimer.Tick += updateScreen;
             gameTimer.Start();
-            Form1_KeyDown(this, new KeyEventArgs(Keys.Return)); // Form yüklendiğinde KeyDown olayını tetikle
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs k)
+        public void Form1_KeyDown(object sender, KeyEventArgs k)
         {
             Console.WriteLine("bastığın buton  " + k.KeyCode);
             if (k.KeyCode == Keys.Return)
@@ -87,25 +84,6 @@ namespace SnakeIO
                 score_lbl.Text = Settings.Score.ToString();
                 Console.WriteLine("Aktif Yön: " + Settings.Directions);
             }
-           
-
-
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void KeyisDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void KeyisUp(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void updateGraphics(object sender, PaintEventArgs e)
@@ -129,7 +107,7 @@ namespace SnakeIO
 
                     //yılan vücudu çizimi
                     canvas.FillEllipse(snakeColor, new Rectangle(Snake[i].X * Settings.Width, Snake[i].Y * Settings.Height, Settings.Width, Settings.Height));
-                    // yemek çizimi
+                    //yemek çizimi
                     canvas.FillEllipse(Brushes.Yellow, new Rectangle(food.X * Settings.Width, food.Y * Settings.Height, Settings.Width, Settings.Height));
 
                 }
@@ -149,12 +127,12 @@ namespace SnakeIO
         private void startGame()
         {
             Snake.Clear();
-            Circle head = new Circle() { X = 10, Y = 5 };
+            Circle head = new Circle() { X = 16, Y = 13 };
             Snake.Add(head);
 
             Settings.Score = 0;
             Settings.GameOver = false;
-            isStarted = true;
+            
 
             generateFood();
         }
@@ -204,11 +182,8 @@ namespace SnakeIO
                     if (Snake[0].X ==food.X && Snake[0].Y == food.Y)
                     {
                         eat();
+                        Settings.Speed += 50;
                     }
-
-
-
-
 
                 }
                 else
@@ -225,17 +200,26 @@ namespace SnakeIO
         {
             Settings.GameOver = true;
             isStarted = false;
-            gameTimer.Stop();
-            MessageBox.Show("Game Over", "Game end", MessageBoxButtons.RetryCancel);
-            if (DialogResult == DialogResult.Retry)
-            {
-                Settings.GameOver = false;
-            }
-            else
-            {
-                this.Close();
-            }
+            
+            Retry();
+        }
 
+        private void Retry()
+        {
+            if(Settings.GameOver == true)
+            {
+                DialogResult result = MessageBox.Show("Game Over", "Game end", MessageBoxButtons.RetryCancel);
+                if (result == DialogResult.Retry)
+                {
+                    Settings.GameOver = false;
+                    startGame();
+
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    this.Close();
+                }
+            }
         }
 
         private void eat()
@@ -274,8 +258,14 @@ namespace SnakeIO
 
         }
 
-       
-
-
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            if (Input.pressedKeys.Contains(Keys.Return))
+            {
+                startGame();
+                end_lbl.Visible = false;
+                movePlayer();
+            }
+        }
     }
 }

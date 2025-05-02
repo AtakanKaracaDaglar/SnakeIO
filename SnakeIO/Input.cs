@@ -31,6 +31,7 @@ namespace SnakeIO
                 pressedKeys.Add(k);
                 Console.WriteLine("BASILDI: " + k); // TEST SATIRI
             }
+            
         }
 
         public static void KeyUp(Keys k)
