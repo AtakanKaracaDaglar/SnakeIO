@@ -34,6 +34,7 @@
             this.score_lbl = new System.Windows.Forms.Label();
             this.end_lbl = new System.Windows.Forms.Label();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,17 +84,29 @@
             // 
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(1070, 322);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(432, 60);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "NE GEREK VARDI Kİ TAM EKRANDA OYNAMAYA\r\nKALSAYDI ORTA DA :):):)\r\n\r\n";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 580);
+            this.ClientSize = new System.Drawing.Size(747, 598);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.end_lbl);
             this.Controls.Add(this.score_lbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
@@ -108,6 +121,7 @@
         private System.Windows.Forms.Label score_lbl;
         private System.Windows.Forms.Label end_lbl;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -38,19 +38,28 @@ namespace SnakeIO
             gameTimer.Tick += updateScreen;
             gameTimer.Start();
         }
-
+        bool basildi = false;
         public void Form1_KeyDown(object sender, KeyEventArgs k)
         {
+            
             Console.WriteLine("bastığın buton  " + k.KeyCode);
-            if (k.KeyCode == Keys.Return)
+            if(basildi == false)
             {
-                
-                startGame();
-                Console.WriteLine("oyun başladı");
-                isStarted = true;
-                Settings.GameOver = false;
+                if (k.KeyCode == Keys.Return)
+                {
+                    basildi = true;
+                    startGame();
+                    Console.WriteLine("oyun başladı");
+                    isStarted = true;
+                    Settings.GameOver = false;
 
+                }
             }
+            else
+            {
+                return; // Eğer zaten basıldıysa tekrar basılmasını engelle
+            }
+            
         }
 
         public void updateScreen(object sender, EventArgs e)
@@ -263,10 +272,12 @@ namespace SnakeIO
 
             if (Input.pressedKeys.Contains(Keys.Return))
             {
-                
-                startGame();
+                if(basildi == false)
+                {
+                    startGame();
+                    movePlayer();
+                }
                 end_lbl.Visible = false;
-                movePlayer();
             }
         }
     }
