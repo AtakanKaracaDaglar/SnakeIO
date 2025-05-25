@@ -73,12 +73,11 @@
             this.end_lbl.BackColor = System.Drawing.SystemColors.MenuText;
             this.end_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.end_lbl.ForeColor = System.Drawing.Color.OrangeRed;
-            this.end_lbl.Location = new System.Drawing.Point(179, 171);
+            this.end_lbl.Location = new System.Drawing.Point(55, 240);
             this.end_lbl.Name = "end_lbl";
-            this.end_lbl.Size = new System.Drawing.Size(111, 25);
+            this.end_lbl.Size = new System.Drawing.Size(444, 25);
             this.end_lbl.TabIndex = 3;
-            this.end_lbl.Text = "END TEXT";
-            this.end_lbl.Visible = false;
+            this.end_lbl.Text = "Oyunun Başlaması için lütfen Enter tuşuna basınız";
             // 
             // gameTimer
             // 

@@ -30,9 +30,10 @@ namespace SnakeIO
 
             this.KeyDown += (s, e) => Input.KeyDown(e.KeyCode);
             this.KeyUp += (s, e) => Input.KeyUp(e.KeyCode);
+            this.KeyDown += Form1_KeyDown;
 
 
-           
+            pbCanvas.Paint += updateGraphics;
             gameTimer.Interval = 2000 / Settings.Speed;
             gameTimer.Tick += updateScreen;
             gameTimer.Start();
@@ -118,7 +119,7 @@ namespace SnakeIO
                 //game over yazısı
                 string gameOverText = "Game Over\nPress Enter to Restart";
                 end_lbl.Text = gameOverText;
-                end_lbl.Visible = true;
+                
             }
 
 
@@ -127,12 +128,13 @@ namespace SnakeIO
         private void startGame()
         {
             Snake.Clear();
-            Circle head = new Circle() { X = 16, Y = 13 };
+            Circle head = new Circle() { X = 13, Y = 16 };
             Snake.Add(head);
 
             Settings.Score = 0;
             Settings.GameOver = false;
-            
+            isStarted = true;
+
 
             generateFood();
         }
@@ -258,8 +260,10 @@ namespace SnakeIO
         }
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+
             if (Input.pressedKeys.Contains(Keys.Return))
             {
+                
                 startGame();
                 end_lbl.Visible = false;
                 movePlayer();
